@@ -16,7 +16,7 @@ $dbuser = getenv("MYSQL_USER");
 $dbpwd = getenv("MYSQL_PASSWORD");
 $dbname = getenv("MYSQL_DATABASE");
 
-		$conn = mysqli_connect($dbhost, "$dbuser", "$dbpwd",'testdb', $dbport);
+		$conn = mysqli_connect($dbhost, "user1", "mypa55","testdb", $dbport);
 		
 		// Check connection
 		if($conn === false){
