@@ -1,28 +1,53 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>Welcome Page</title>
-<link rel="stylesheet" href="style.css">
+	<title>Insert Page page</title>
+	<link rel="stylesheet" href="style.css">
 </head>
+
 <body class="body1">
-<center><h1>WELCOME PAGE</h1>
-<?php  
-$name=$_POST["name"];
-echo "Welcome: $name";
-?>
-<br>
-<?php  
-$age=$_POST["age"];
-echo "your age is: $age";
-?>
-<br>
-<?php  
-$companyname=$_POST["companyname"];
-echo "Your company name is: $companyname";  
-?>
-</center>
-<br><br>
-<center>
-<a href="index.html" ><input type="submit" value="Home" class="input2">  </a>
-</center>
+	<center>
+		<?php
+
+$dbhost = getenv("MYSQL_SERVICE_HOST");
+$dbport = getenv("MYSQL_SERVICE_PORT");
+$dbuser = getenv("MYSQL_USER");
+$dbpwd = getenv("MYSQL_PASSWORD");
+$dbname = getenv("MYSQL_DATABASE");
+
+		$conn = mysqli_connect($dbhost, "$dbuser", "$dbpwd",$dbname, $dbport);
+		
+		// Check connection
+		if($conn === false){
+			die("ERROR: Could not connect. "
+				. mysqli_connect_error());
+		}
+		
+		// Taking all 5 values from the form data(input)
+		$name = $_REQUEST['name'];
+		$age = $_REQUEST['age'];
+		$companyname = $_REQUEST['companyname'];
+		
+		// Performing insert query execution
+		// here our table name is college
+		$sql = "INSERT INTO sample_db VALUES ('$name',
+			'$age','$companyname')";
+		
+		if(mysqli_query($conn, $sql)){
+			echo "<h3>Data stored in a database successfully.</h3>";
+
+			echo nl2br("\n$name\n $age\n "
+				. "$companyname\n");
+		} else{
+			echo "ERROR: Hush! Sorry $sql. "
+				. mysqli_error($conn);
+		}
+		
+		// Close connection
+		mysqli_close($conn);
+		?>
+	</center>
 </body>
+
 </html>
