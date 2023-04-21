@@ -27,18 +27,18 @@ $dbname = getenv("MYSQL_DATABASE");
 		// Taking all 5 values from the form data(input)
 		$name = $_REQUEST['name'];
 		$age = $_REQUEST['age'];
-		$companyname = $_REQUEST['companyname'];
+		$companyName = $_REQUEST['companyName'];
 		
 		// Performing insert query execution
 		// here our table name is college
 		$sql = "INSERT INTO sample_db VALUES ('$name',
-			'$age','$companyname')";
+			'$age','$companyName')";
 		
 		if(mysqli_query($conn, $sql)){
 			echo "<h3>Data stored in a database successfully.</h3>";
 
 			echo nl2br("\n$name\n $age\n "
-				. "$companyname\n");
+				. "$companyName\n");
 		} else{
 			echo "ERROR: Hush! Sorry $sql. "
 				. mysqli_error($conn);
