@@ -44,7 +44,7 @@ if (mysqli_num_rows($result) > 0) {
 		<tr>
 			<td><?php echo $row["name"]; ?></td>
 			<td><?php echo $row["age"]; ?></td>
-			<td><?php echo $row["companyname"]; ?></td>
+			<td><?php echo $row["companyName"]; ?></td>
 		</tr>
 			<?php
 			$i++;
