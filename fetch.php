@@ -13,7 +13,14 @@
 <body class="body1">
 	<center>
 		<?php
-		$conn = mysqli_connect("localhost", "root", "", "sample");
+
+$dbhost = getenv("MYSQL_SERVICE_HOST");
+$dbport = getenv("MYSQL_SERVICE_PORT");
+$dbuser = getenv("MYSQL_USER");
+$dbpwd = getenv("MYSQL_PASSWORD");
+$dbname = getenv("MYSQL_DATABASE");
+
+		$conn = mysqli_connect($dbhost, "user1", "mypa55","testdb", $dbport);
 
 		if($conn === false){
 			die("ERROR: Could not connect. "
